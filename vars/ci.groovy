@@ -11,6 +11,11 @@ def call(){
             stage( 'Compile' ) {}
             stage( 'Test Case' ) {}
             stage( 'Integrtaion Test Case' ) {}
+        } else if(TAG_NAME ==~ ".*") {
+            stage( 'Code Checkout' ) {}
+            stage( 'Compile' ) {}
+            stage( 'Build' ) {}
+            stage( 'Release App' ) {}
         }
         else {
             stage( 'Code Checkout' ) {}
