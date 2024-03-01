@@ -6,7 +6,12 @@ def call(){
             stage( 'Code Checkout' ) {}
             stage( 'Compile' ) {}
             stage( 'Build' ) {}
-        } else {
+        } else if(BRANCH_NAME ==~ "PR.*") {
+            stage( 'Code Checkout' ) {}
+            stage( 'Compile' ) {}
+            stage( 'Integrtaion Test Case' ) {}
+        }
+        else {
             stage( 'Code Checkout' ) {}
             stage( 'Compile' ) {}
             stage( 'Test Case' ) {}
