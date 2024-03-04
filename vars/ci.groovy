@@ -15,7 +15,7 @@ def call(){
                     userRemoteConfigs: [[url: "https://github.com/devopsmins/expense-backend.git"]]
            )
         }
-        sh 'ls'
+
         stage( 'Compile' ) {}
 
         if(env.BRANCH_NAME == "main")
