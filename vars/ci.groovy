@@ -17,7 +17,7 @@ def call(){
             //git branch: 'main', url: 'https://github.com/expenseapp-v1/expense-backend.git'
            checkout scmGit(
                     branches: [[name: "${branch_name}"]],
-                    userRemoteConfigs: [[url: "https://github.com/devopsmins/expense-backend.git"]]
+                    userRemoteConfigs: [[url: "https://github.com/devopsmins/expense-backend"]]
            )
             sh 'cat Jenkinsfile'
         }
