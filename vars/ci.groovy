@@ -9,12 +9,13 @@ def call(){
             env.branch_name == env.BRANCH_NAME
         }
         stage( 'Code Checkout' ) {
-            git branch: 'main', url: 'https://github.com/expenseapp-v1/expense-backend.git'
-           // checkout scmGit(
-                    //branches: [[name: "${branch_name}"]],
-                    //userRemoteConfigs: [[url: "https://github.com/expenseapp-v1/expense-backend.git"]]
-
+            //git branch: 'main', url: 'https://github.com/expenseapp-v1/expense-backend.git'
+           checkout scmGit(
+                    branches: [[name: "${branch_name}"]],
+                    userRemoteConfigs: [[url: "https://github.com/expenseapp-v1/expense-backend.git"]]
+           )
         }
+        sh 'ls'
         stage( 'Compile' ) {}
 
         if(env.BRANCH_NAME == "main")
