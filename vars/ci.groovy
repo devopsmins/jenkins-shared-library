@@ -6,7 +6,7 @@ def call(){
         if(env.TAG_NAME ==~ ".*") {
             env.branch_name == "${env.TAG_NAME}"
         } else {
-            if(env.BRANCH_NAME ==~ ".*") {
+            if(env.BRANCH_NAME ==~ "PR-.*") {
                 env.branch_name == "${env.CHANGE_BRANCH}"
 
 
