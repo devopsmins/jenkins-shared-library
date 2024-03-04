@@ -1,12 +1,12 @@
 def call(){
     node ('workstation' ) {
 
-        //sh "find . | sed -e '1d' |xargs rm -rf"
+        sh "find . | sed -e '1d' |xargs rm -rf"
 
         if(env.TAG_NAME ==~ ".*") {
-            env.branch_name == env.TAG_NAME
+            env.branch_name == "refs/tags/${env.TAG_NAME}"
         } else {
-            env.branch_name == env.BRANCH_NAME
+            env.branch_name == "${env.BRANCH_NAME}"
         }
         stage( 'Code Checkout' ) {
             //git branch: 'main', url: 'https://github.com/expenseapp-v1/expense-backend.git'
