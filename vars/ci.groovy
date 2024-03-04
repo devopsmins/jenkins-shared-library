@@ -1,12 +1,17 @@
 def call(){
     node ('workstation' ) {
+        sh "find . | sed -d '1d' | args rm -rf"
         if(env.TAG_NAME ==~ ".*") {
-            env.branchname == env.TAG_NAME
+            env.branchname == "refs/tags/${env.TAG_NAME}"
         } else {
-            env.branchname == env.BRANCH_NAME
+            env.branch_name == ${env.BRANCH_NAME}
         }
         stage( 'Code Checkout' ) {
-            git branch: 'main', url: 'https://github.com/expenseapp-v1/expense-backend.git'
+            //git branch: 'main', url: 'https://github.com/expenseapp-v1/expense-backend.git'
+            checkout scmGit(
+                    branches: [[name: "${branch_name}"]],
+                    userRemoteConfigs: [[url: "https://github.com/expenseapp-v1/expense-backend.git"]]
+            )
         }
         stage( 'Compile' ) {}
 
