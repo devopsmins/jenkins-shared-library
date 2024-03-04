@@ -1,6 +1,13 @@
 def call(){
     node ('workstation' ) {
-        stage( 'Code Checkout' ) {}
+        if(env.TAG_NAME ==~ ".*") {
+            env.branchname == env.TAG_NAME
+        } else {
+            env.branchname == env.BRANCH_NAME
+        }
+        stage( 'Code Checkout' ) {
+            git branch: 'main', url: 'https://github.com/expenseapp-v1/expense-backend.git'
+        }
         stage( 'Compile' ) {}
 
         if(env.BRANCH_NAME == "main")
