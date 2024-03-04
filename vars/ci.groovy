@@ -9,7 +9,6 @@ def call(){
             if(env.BRANCH_NAME ==~ "PR-.*") {
                 env.branch_name == "${env.CHANGE_BRANCH}"
 
-
         } else {
             env.branch_name == "${env.BRANCH_NAME}"
         }
