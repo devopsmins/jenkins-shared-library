@@ -1,8 +1,8 @@
 def call(){
     node ('workstation' ) {
-        sh "find . | sed -d '1d' | args rm -rf"
+        sh "find . | sed -e '1d' |xargs rm -rf"
         if(env.TAG_NAME ==~ ".*") {
-            env.branchname == "refs/tags/${env.TAG_NAME}"
+            env.branch_name == "refs/tags/${env.TAG_NAME}"
         } else {
             env.branch_name == ${env.BRANCH_NAME}
         }
