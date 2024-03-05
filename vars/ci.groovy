@@ -7,7 +7,7 @@ def call(){
             env.branch_name == "refs/tags/${env.TAG_NAME}"
         } else {
             if(env.BRANCH_NAME ==~ "PR-.*" ) {
-                env.branch_name == "refs/remotes/origin/master${env.CHANGE_BRANCH}"
+                env.branch_name == "refs/remotes/origin/master/${env.CHANGE_BRANCH}"
             } else {
                 env.branch_name == "${env.BRANCH_NAME}"
             }
