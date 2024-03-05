@@ -13,11 +13,11 @@ def call(){
             }
         }
         stage( 'Code Checkout' ) {
-            git branch: "${env.branch_name}", url: 'https://github.com/devopsmins/expense-backend.git'
-           //checkout scmGit(
-                    //branches: [[name: "${branch_name}"]],
-                    //userRemoteConfigs: [[url: "https://github.com/devopsmins/expense-backend"]]
-          // )
+            //git branch: "${env.branch_name}", url: 'https://github.com/devopsmins/expense-backend.git'
+           checkout scmGit(
+                    branches: [[name: "${branch_name}"]],
+                    userRemoteConfigs: [[url: "https://github.com/devopsmins/expense-backend"]]
+           )
             sh 'cat Jenkinsfile'
         }
 
