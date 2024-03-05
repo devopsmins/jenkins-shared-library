@@ -8,13 +8,10 @@ def call(){
         } else {
             if(env.BRANCH_NAME ==~ "PR-.*" ) {
                 env.branch_name == "${env.CHANGE_BRANCH}"
+            } else {
+                env.branch_name == "${env.BRANCH_NAME}"
             }
-        else {
-            env.branch_name == "${env.BRANCH_NAME}"
-            }
-
         }
-        sh 'env'
         stage( 'Code Checkout' ) {
             //git branch: 'main', url: 'https://github.com/expenseapp-v1/expense-backend.git'
            checkout scmGit(
