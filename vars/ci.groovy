@@ -5,13 +5,10 @@ def call(){
 
         if(env.TAG_NAME ==~ ".*") {
             env.branch_name == "refs/tags/${env.TAG_NAME}"
-        } else {
-            if(env.BRANCH_NAME ==~ "PR-.*") {
-                env.branch_name == "${env.CHANGE_BRANCH}"
-            } else {
+        }  else {
             env.branch_name == "${env.BRANCH_NAME}"
             }
-        }
+
         sh 'env'
         stage( 'Code Checkout' ) {
             //git branch: 'main', url: 'https://github.com/expenseapp-v1/expense-backend.git'
