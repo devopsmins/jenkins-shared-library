@@ -5,7 +5,7 @@ def call(){
         if(env.TAG_NAME ==~ ".*") {
             env.branch_name == "refs/tags/${env.TAG_NAME}"
         } else
-            if(env.BRANCH_NAME ==~ "PR-.*" ) {
+            if(env.BRANCH_NAME ==~ "PR-.*") {
                 env.branch_name == "${env.CHANGE_BRANCH}"
             } else {
                 env.branch_name == "${env.BRANCH_NAME}"
@@ -20,19 +20,21 @@ def call(){
 
         stage( 'Compile' ) {}
 
-        if(env.BRANCH_NAME == "main")
-        {
-            stage( 'Build' ) {}
-        } else if(env.BRANCH_NAME ==~ "PR.*") {
-
+        if(env.JOB_BASE_NAME ==~ "PR.*") {
+            sh 'echo PR'
             stage( 'Test Case' ) {}
             stage( 'Integrtaion Test Case' ) {}
+        }else if(env.BRANCH_NAME == "main") {
+            sh 'echo main'
+            stage( 'Build' ) {}
         } else if(env.TAG_NAME ==~ ".*") {
+            sh 'eho TAG'
 
             stage( 'Build' ) {}
             stage( 'Release App' ) {}
         }
         else {
+            sh 'echo branch'
             stage( 'Test Case' ) {}
         }
         //stage( 'Compile' ) {}
