@@ -16,7 +16,7 @@ def call(){
            )
             sh 'cat Jenkinsfile'
         }
-        if(app_type == nodejs) {
+        if(app_type == "nodejs") {
             stage( 'Download Dependencies' ) {}
             sh 'npm install'
         }
