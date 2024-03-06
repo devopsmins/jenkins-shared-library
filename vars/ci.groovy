@@ -18,7 +18,6 @@ def call(){
             sh 'cat Jenkinsfile'
         }
 
-
         stage( 'Compile' ) {}
 
         if(env.BRANCH_NAME == "main")
