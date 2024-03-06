@@ -28,7 +28,7 @@ def call(){
             sh 'echo main'
             stage( 'Build' ) {}
         } else if(env.TAG_NAME ==~ ".*") {
-            sh 'eho TAG'
+            sh 'echo TAG'
 
             stage( 'Build' ) {}
             stage( 'Release App' ) {}
