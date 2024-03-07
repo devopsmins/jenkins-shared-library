@@ -12,7 +12,7 @@ def call(){
         } else if(env.BRANCH_NAME ==~ "PR-.*") {
                 env.branch_name = "${env.CHANGE_BRANCH}"
             } else {
-                env.branch_name = "${env.BRANCH_NAME}"
+                env.branch_nparam_nameame = "${env.BRANCH_NAME}"
             }
         stage( 'Code Checkout' ) {
             checkout scmGit(
@@ -32,7 +32,7 @@ def call(){
             sh 'echo PR'
             stage( 'Test Case' ) {}
             stage( 'Code quality' ) {
-                print (AWS_SSM_PARAM(param_name: 'sonar_token'))
+                print (AWS_SSM_PARAM('sonar_token'))
                 //sh 'sonar-scanner -Dsonar.host.url=http://172.31.3.189:9000 -Dsonar.login=${SONAR_TOKEN} -Dsonar.projectKey=expense-backend'
             }
         }else if(env.BRANCH_NAME == "main") {
