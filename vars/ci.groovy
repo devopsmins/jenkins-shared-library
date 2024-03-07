@@ -1,3 +1,8 @@
+def AWS_SSM_PARAM(param_name) {
+    def OUTPUT = sh ( script: "aws ssm get-parameter --name ${param_name} --with-decryption --query 'Parameter.Value' --output text", returnStdout: true).trim()
+    return(OUTPUT)
+}
+
 def call(){
     node ('workstation' ) {
         sh "find . | sed -e '1d' |xargs rm -rf"
@@ -27,7 +32,8 @@ def call(){
             sh 'echo PR'
             stage( 'Test Case' ) {}
             stage( 'Code quality' ) {
-                sh 'sonar-scanner -Dsonar.host.url=http://172.31.3.189:9000 -Dsonar.login=${SONAR_TOKEN} -Dsonar.projectKey=expense-backend'
+                print (AWS_SSM_PARAM(param_name: 'sonar_token'))
+                //sh 'sonar-scanner -Dsonar.host.url=http://172.31.3.189:9000 -Dsonar.login=${SONAR_TOKEN} -Dsonar.projectKey=expense-backend'
             }
         }else if(env.BRANCH_NAME == "main") {
             sh 'echo main'
