@@ -32,7 +32,9 @@ def call(){
             stage( 'Test Case' ) {}
             stage( 'Code quality' ) {
              env.SONAR_TOKEN = AWS_SSM_PARAM('sonar.token')
+                wrap([$class: 'MaskPasswordsBuildWrapper', varPasswordPairs: [[password: "${SONAR_TOKEN}", var: 'SONAR_TOKEN']]]) {
                 sh 'sonar-scanner -Dsonar.host.url=http://172.31.3.189:9000 -Dsonar.login=${SONAR_TOKEN} -Dsonar.projectKey=expense-backend -Dsonar.exclusions=node_modules/**'
+            }
             }
         }else if(env.BRANCH_NAME == "main") {
             sh 'echo main'
