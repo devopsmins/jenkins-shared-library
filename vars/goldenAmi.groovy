@@ -1,5 +1,5 @@
 def call() {
-    ansicolor ('xterm') {
+    ansiColor ('xterm') {
     node ('workstation' ) {
         common.codeCheckout()
         stage ('Terrafrom Apply') {
